@@ -1,0 +1,26 @@
+
+spring:
+  rabbitmq:
+    host: 10.11.88.220
+    #    host: 192.168.1.105
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+    listener:
+      simple:
+        acknowledge-mode: manual # \u624B\u52A8ack\uFF0C\u9ED8\u8BA4\u4E3Aauto
+    publisher-returns: true #\u5F00\u542F\u53D1\u9001\u5931\u8D25\u56DE\u9000
+    #    publisher-confirms: true #\u5F00\u542F\u53D1\u9001\u786E\u8BA4(\u5DF2\u8FC7\u65F6)
+    publisher-confirm-type: correlated #\u5F00\u542F\u53D1\u9001\u786E\u8BA4 \u540C\u4E0A
+
+log:
+  exchange: log.exchange
+  info:
+    queue: info.log.queue
+    binding-key: 'info.log.key'
+  all:
+    queue: all.log.queue
+    binding-key: '#.log.key'
+server:
+  port: 8081

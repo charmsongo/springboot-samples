@@ -1,0 +1,29 @@
+spring:
+  rabbitmq:
+#       host: 10.11.88.220
+    host: 192.168.1.105
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+    listener:
+      simple:
+        acknowledge-mode: manual #开启消费者消息确认
+    publisher-returns: true #开启生产者消息回调
+    #    publisher-confirms: true
+    publisher-confirm-type: correlated #开启生产者消息确认
+
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    username: root
+    password: 123456
+    url: jdbc:mysql://192.168.1.105:13306/test?useUnicode=true&charsetEncoding==UTF-8&serverTimezone=Asia/Shanghai
+
+test:
+  exchange: test.exchange
+  one:
+    queue: one.test.queue
+    binding-key: one.test.key
+  all:
+    queue: all.test.queue
+    binding-key: '#.test.key'
